@@ -45,7 +45,7 @@ Translate English into Skämål.
         }
         textarea {
             width: 100%;
-            height: 110px;
+            height: 120px;
             padding: 12px;
             border: 2px solid #ced4da;
             border-radius: 6px;
@@ -58,6 +58,13 @@ Translate English into Skämål.
             outline: none;
             border-color: #0056b3;
         }
+        .output-textarea {
+            background-color: #f8f9fa;
+            color: #111;
+            font-weight: 600;
+            border-color: #dee2e6;
+            cursor: default;
+        }
         .status-badge {
             display: inline-block;
             font-size: 11px;
@@ -69,16 +76,6 @@ Translate English into Skämål.
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-        }
-        .output-box {
-            background: #f8f9fa;
-            border-left: 5px solid #0056b3;
-            padding: 18px;
-            margin-top: 10px;
-            min-height: 60px;
-            white-space: pre-wrap;
-            font-size: 20px;
-            color: #111;
         }
         details {
             background: #fff;
@@ -121,8 +118,8 @@ Translate English into Skämål.
         
         <div class="form-group" style="margin-top: 25px;">
             <span class="status-badge">Live Automatic Translation</span>
-            <label>Skämål Target Translation:</label>
-            <div id="skamalOutput" class="output-box"></div>
+            <label for="skamalOutput">Skämål Target Translation:</label>
+            <textarea id="skamalOutput" class="output-textarea" readonly placeholder="Skämål translation will appear here automatically..."></textarea>
         </div>
     </div>
 
@@ -154,30 +151,7 @@ Translate English into Skämål.
     </details>
 
     <script>
-        // Master Protected Vocabulary
         const dictionary = {
             "hello": "Hejsan", "welcome": "Valkomma", "thank": "Väa", "thankyou": "Väa",
             "goodbye": "Väo", "yes": "Vïste", "no": "Vïsto", "language": "språkå", "dialect": "språkå", 
-            "text": "båkkt", "person": "sjelå", "friend": "sjelårad", "police": "vakt", "officer": "onstapel", 
-            "city": "stadä", "house": "garda", "tree": "stalmå", "coffee": "Kafe", "water": "vatnå", 
-            "like": "lyskå", "likes": "lyskå", "am": "är", "is": "ös", "are": "ös", "hot": "skolå", 
-            "warm": "skolå", "boiling": "skolå", "cold": "kjölå", "freezing": "kjölå", "beautiful": "skönå", 
-            "a": "vå", "the": "hät", "to": "åt", "who": "Hå", "what": "Vät", "when": "Vëhn", "where": "Vär", 
-            "why": "Vï", "how": "Hët", "1": "Än", "2": "Dva", "3": "Trå", "4": "Fjäl", "5": "Föm", 
-            "6": "Sås", "7": "Sjå", "8": "Ått", "9": "Njö", "10": "Täl"
-        };
-
-        const pronouns = { "i": "Jäg", "you": "Dö", "he": "Hän", "she": "Hän", "it": "Dät", "we": "Vö", "they": "Då" };
-        const possessives = { "my": "Jän-", "your": "Dön-", "his": "Häns-", "her": "Häns-", "its": "Däts-", "our": "Vön-", "their": "Dån-" };
-        const contractions = { "i'm": "Jäg-ös", "you're": "Dö-ös", "he's": "Hän-ös", "she's": "Hän-ös", "it's": "Dät-ös", "we're": "Vö-ös", "they're": "Då-ös" };
-        const adjectives = ["skolå", "kjölå", "skönå"];
-
-        // Add the automatic event listener to run code instantly on input
-        document.getElementById('englishInput').addEventListener('input', translateToSkamal);
-
-        function runMechanicalRules(word) {
-            let cleanWord = word;
-            let suffix = "";
-            
-            if (cleanWord.toLowerCase().endsWith("ing")) { suffix = "ing"; cleanWord = cleanWord.slice(0, -3); }
-            else if (cleanWord.toLowerCase().endsWith("ed")) { suffix = "ed"; cleanWord = cleanWord.slice(0, -2); }
+            "text": "båkkt", "person": "sjelå", "friend": "sjelårad", "police": "v
