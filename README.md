@@ -154,4 +154,13 @@ Translate English into Skämål.
         const dictionary = {
             "hello": "Hejsan", "welcome": "Valkomma", "thank": "Väa", "thankyou": "Väa",
             "goodbye": "Väo", "yes": "Vïste", "no": "Vïsto", "language": "språkå", "dialect": "språkå", 
-            "text": "båkkt", "person": "sjelå", "friend": "sjelårad", "police": "v
+            "text": "båkkt", "person": "sjelå", "friend": "sjelårad", "police": "vakt", "officer": "onstapel", 
+            "city": "stadä", "house": "garda", "tree": "stalmå", "coffee": "Kafe", "water": "vatnå", 
+            "like": "lyskå", "likes": "lyskå", "am": "är", "is": "ös", "are": "ös", "hot": "skolå", 
+            "warm": "skolå", "boiling": "skolå", "cold": "kjölå", "freezing": "kjölå", "beautiful": "skönå", 
+            "a": "vå", "the": "hät", "to": "åt", "who": "Hå", "what": "Vät", "when": "Vëhn", "where": "Vär", 
+            "why": "Vï", "how": "Hët", "1": "Än", "2": "Dva", "3": "Trå", "4": "Fjäl", "5": "Föm", 
+            "6": "Sås", "7": "Sjå", "8": "Ått", "9": "Njö", "10": "Täl"
+        };
+
+        const pronouns = { "i": "Jäg", "you": "D
