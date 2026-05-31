@@ -151,6 +151,7 @@ Translate English into Skämål.
     </details>
 
     <script>
+        // Master Translation Maps
         const dictionary = {
             "hello": "Hejsan", "welcome": "Valkomma", "thank": "Väa", "thankyou": "Väa",
             "goodbye": "Väo", "yes": "Vïste", "no": "Vïsto", "language": "språkå", "dialect": "språkå", 
@@ -163,4 +164,91 @@ Translate English into Skämål.
             "6": "Sås", "7": "Sjå", "8": "Ått", "9": "Njö", "10": "Täl"
         };
 
-        const pronouns = { "i": "Jäg", "you": "D
+        const pronouns = { "i": "Jäg", "you": "Dö", "he": "Hän", "she": "Hän", "it": "Dät", "we": "Vö", "they": "Då" };
+        const possessives = { "my": "Jän-", "your": "Dön-", "his": "Häns-", "her": "Häns-", "its": "Däts-", "our": "Vön-", "their": "Dån-" };
+        const contractions = { "i'm": "Jäg-ös", "you're": "Dö-ös", "he's": "Hän-ös", "she's": "Hän-ös", "it's": "Dät-ös", "we're": "Vö-ös", "they're": "Då-ös" };
+        const adjectives = ["skolå", "kjölå", "skönå"];
+
+        document.getElementById('englishInput').addEventListener('input', function() {
+            let input = this.value;
+            let outputBox = document.getElementById("skamalOutput");
+
+            if (!input.trim()) {
+                outputBox.value = "";
+                return;
+            }
+
+            // Simple, foolproof word-by-word replacement loop
+            let paragraphs = input.split('\n');
+            let translatedParagraphs = paragraphs.map(paragraph => {
+                let words = paragraph.split(/(\s+)/); // Keeps spaces intact to prevent visual glitches
+                
+                for (let i = 0; i < words.length; i++) {
+                    let cleanWord = words[i].trim().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"");
+                    let lowerWord = cleanWord.toLowerCase();
+
+                    if (!cleanWord) continue;
+
+                    // 1. Contractions check
+                    if (contractions[lowerWord]) {
+                        words[i] = words[i].replace(cleanWord, contractions[lowerWord]);
+                        continue;
+                    }
+
+                    // 2. Possessives check (removes trailing space automatically)
+                    if (possessives[lowerWord]) {
+                        let nextWordIdx = i + 2; 
+                        if (nextWordIdx < words.length && words[nextWordIdx].trim()) {
+                            let nextClean = words[nextWordIdx].trim().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"");
+                            let nextLower = nextClean.toLowerCase();
+                            let translatedNoun = dictionary[nextLower] || pronouns[nextLower] || nextClean;
+                            
+                            words[i] = possessives[lowerWord] + translatedNoun.toLowerCase();
+                            words[nextWordIdx] = words[nextWordIdx].replace(nextClean, ""); // clear out combined word
+                        } else {
+                            words[i] = words[i].replace(cleanWord, possessives[lowerWord]);
+                        }
+                        continue;
+                    }
+
+                    // 3. Pronouns check
+                    if (pronouns[lowerWord]) {
+                        words[i] = words[i].replace(cleanWord, pronouns[lowerWord]);
+                        continue;
+                    }
+
+                    // 4. Base dictionary check
+                    if (dictionary[lowerWord]) {
+                        words[i] = words[i].replace(cleanWord, dictionary[lowerWord]);
+                        continue;
+                    }
+                }
+
+                // Noun-Adjective Inverse Swap
+                for (let i = 0; i < words.length - 2; i++) {
+                    let word1 = words[i].trim().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"").toLowerCase();
+                    let word2 = words[i+2] ? words[i+2].trim().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"").toLowerCase() : "";
+                    
+                    if (word1 && word2 && adjectives.includes(word1) && !adjectives.includes(word2)) {
+                        let temp = words[i];
+                        words[i] = words[i+2];
+                        words[i+2] = temp;
+                    }
+                }
+
+                let result = words.join("");
+                
+                // Add the universal prefix if the phrase is a question
+                if (paragraph.trim().toLowerCase().startsWith("why") || paragraph.trim().endsWith("?")) {
+                    if (!result.startsWith("Må ")) {
+                        result = "Må " + result;
+                    }
+                }
+                return result;
+            });
+
+            outputBox.value = translatedParagraphs.join('\n');
+        });
+    </script>
+</body>
+</html>
