@@ -1,4 +1,4 @@
-# Skamal Translator
+# Skamal-Translator
 Translate English into Skamal.
 
 <!DOCTYPE html>
