@@ -138,7 +138,7 @@ Translate English to Skämål
                     <tr><td>It</td><td>Dät</td><td>Goodbye</td><td>Väo</td></tr>
                     <tr><td>We</td><td>Vö</td><td>Yes</td><td>Vïste</td></tr>
                     <tr><td>They</td><td>Då</td><td>No</td><td>Vïsto</td></tr>
-                    <tr><td>My</td><td>Jän- [Noun]</td><td>Name</td><td>nåmn</td></tr>
+                    <tr><td>My</td><td>Jän-[Noun]</td><td>Name</td><td>nåmn</td></tr>
                     <tr><td>Language/Dialect</td><td>språkå</td><td>Text</td><td>båkkt</td></tr>
                     <tr><td>Police</td><td>vakt</td><td>Officer</td><td>onstapel</td></tr>
                     <tr><td>City</td><td>stadä</td><td>Friend</td><td>sjelårad</td></tr>
