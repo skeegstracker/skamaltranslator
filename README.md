@@ -1,7 +1,6 @@
 
 Translate English into Skämål.
 
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -59,20 +58,17 @@ Translate English into Skämål.
             outline: none;
             border-color: #0056b3;
         }
-        button {
-            background-color: #0056b3;
-            color: #fff;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
+        .status-badge {
+            display: inline-block;
+            font-size: 11px;
+            background-color: #28a745;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 50px;
+            margin-bottom: 10px;
             font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            transition: background-color 0.2s;
-        }
-        button:hover {
-            background-color: #004085;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         .output-box {
             background: #f8f9fa;
@@ -120,11 +116,11 @@ Translate English into Skämål.
     <div class="translator-container">
         <div class="form-group">
             <label for="englishInput">English Source Text:</label>
-            <textarea id="englishInput" placeholder="Type your English phrase or sentences here..."></textarea>
+            <textarea id="englishInput" placeholder="Start typing your English text here..."></textarea>
         </div>
-        <button onclick="translateToSkamal()">Translate into Skämål</button>
         
         <div class="form-group" style="margin-top: 25px;">
+            <span class="status-badge">Live Automatic Translation</span>
             <label>Skämål Target Translation:</label>
             <div id="skamalOutput" class="output-box"></div>
         </div>
@@ -160,7 +156,7 @@ Translate English into Skämål.
     <script>
         // Master Protected Vocabulary
         const dictionary = {
-            "hello": "Hejsan", "welcome": "Valkomma", "thank thank-you thank-you": "Väa", "thankyou": "Väa",
+            "hello": "Hejsan", "welcome": "Valkomma", "thank": "Väa", "thankyou": "Väa",
             "goodbye": "Väo", "yes": "Vïste", "no": "Vïsto", "language": "språkå", "dialect": "språkå", 
             "text": "båkkt", "person": "sjelå", "friend": "sjelårad", "police": "vakt", "officer": "onstapel", 
             "city": "stadä", "house": "garda", "tree": "stalmå", "coffee": "Kafe", "water": "vatnå", 
@@ -172,34 +168,16 @@ Translate English into Skämål.
         };
 
         const pronouns = { "i": "Jäg", "you": "Dö", "he": "Hän", "she": "Hän", "it": "Dät", "we": "Vö", "they": "Då" };
-        
         const possessives = { "my": "Jän-", "your": "Dön-", "his": "Häns-", "her": "Häns-", "its": "Däts-", "our": "Vön-", "their": "Dån-" };
-        
         const contractions = { "i'm": "Jäg-ös", "you're": "Dö-ös", "he's": "Hän-ös", "she's": "Hän-ös", "it's": "Dät-ös", "we're": "Vö-ös", "they're": "Då-ös" };
-
         const adjectives = ["skolå", "kjölå", "skönå"];
+
+        // Add the automatic event listener to run code instantly on input
+        document.getElementById('englishInput').addEventListener('input', translateToSkamal);
 
         function runMechanicalRules(word) {
             let cleanWord = word;
             let suffix = "";
             
-            // 1. Check & isolate Suffixes
             if (cleanWord.toLowerCase().endsWith("ing")) { suffix = "ing"; cleanWord = cleanWord.slice(0, -3); }
             else if (cleanWord.toLowerCase().endsWith("ed")) { suffix = "ed"; cleanWord = cleanWord.slice(0, -2); }
-            else if (cleanWord.toLowerCase().endsWith("es")) { suffix = "es"; cleanWord = cleanWord.slice(0, -2); }
-            else if (cleanWord.toLowerCase().endsWith("s") && !cleanWord.toLowerCase().endsWith("ss")) { suffix = "s"; cleanWord = cleanWord.slice(0, -1); }
-
-            if (cleanWord.length === 0) return word;
-
-            // 2. Vowel-Starting Prefix Placeholder Consonant
-            let firstLetter = cleanWord.charAt(0);
-            let startsWithVowel = /^[aeiouAEIOU]/.test(firstLetter);
-            if (startsWithVowel) {
-                cleanWord = (suffix === "") ? "T" + cleanWord : "J" + cleanWord;
-            }
-
-            // 3. Compress double elements & mark Umlaut rule criteria
-            let compressed = "";
-            let triggerUmlaut = false;
-            for (let i = 0; i < cleanWord.length; i++) {
-                if (i < cleanWord.length - 1 && cleanWord
