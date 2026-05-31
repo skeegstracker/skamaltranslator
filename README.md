@@ -1,7 +1,6 @@
-# Skamal-Translator
+# skamaltranslator
 Translate English into Skamal.
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
