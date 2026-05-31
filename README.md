@@ -1,268 +1,429 @@
 # skamaltranslator
 Translate English into Skamal.
 
-<html lang="en">
+<!DOCTYPE html>
+<html lang="sv">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skämål Translator</title>
+    <title>English to Skämål Translator</title>
     <style>
-        :root {
-            --primary: #004B87;
-            --accent: #FFCD00;
-            --bg: #f4f6f9;
-            --text: #333333;
-            --card-bg: #ffffff;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 40px auto;
+            max-width: 800px;
+            padding: 0 20px;
+            color: #333;
+            background-color: #fff;
         }
-
-        .container {
-            width: 100%;
-            max-width: 650px;
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            border-top: 8px solid var(--primary);
+        h1 {
+            color: #111;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            font-size: 26px;
         }
-
-        .header {
-            text-align: center;
+        h2 {
+            color: #222;
+            margin-top: 30px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        p {
+            font-size: 15px;
+            color: #555;
             margin-bottom: 25px;
         }
-
-        .header h1 {
-            margin: 0 0 5px 0;
-            color: var(--primary);
-            font-size: 28px;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            margin-bottom: 30px;
         }
-
-        .header p {
-            margin: 0;
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #222;
+        }
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+        .note {
+            font-size: 13px;
             color: #666;
             font-style: italic;
         }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
+        .category-header {
+            background-color: #eaeaea;
             font-weight: bold;
-            margin-bottom: 8px;
-            color: var(--primary);
-        }
-
-        textarea {
-            width: 100%;
-            height: 100px;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
             font-size: 16px;
-            resize: vertical;
-            box-sizing: border-box;
-            transition: border-color 0.2s;
         }
-
-        textarea:focus {
-            outline: none;
-            border-color: var(--primary);
+        ul, ol {
+            padding-left: 20px;
         }
-
-        .output-box {
-            width: 100%;
-            min-height: 100px;
-            background-color: #f8f9fa;
-            border: 2px dashed var(--primary);
-            border-radius: 8px;
-            padding: 12px;
-            font-size: 16px;
-            box-sizing: border-box;
-            white-space: pre-wrap;
+        li {
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="header">
-        <h1>🇸🇪 Skämål Translator 🇸🇪</h1>
-        <p>Official Dialect Engine</p>
-    </div>
+    <h1>English to Skämål Translator</h1>
+    <p>This reference guide contains the official master list of established vocabulary, numbers, pronouns, and the mechanical structural rules required to translate English into Skämål.</p>
 
-    <div class="form-group">
-        <label for="englishInput">English Input</label>
-        <textarea id="englishInput" placeholder="Type an English sentence here... (e.g., Hello, my name is Skee.)"></textarea>
-    </div>
+    <h2>1. Pronouns &amp; Possessive Pronouns</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>English Word</th>
+                <th>Skämål Word</th>
+                <th>Pronunciation / Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>I</td>
+                <td><strong>Jäg</strong></td>
+                <td>Pronounced "Yahg"</td>
+            </tr>
+            <tr>
+                <td>You</td>
+                <td><strong>Dö</strong></td>
+                <td>Pronounced "Duh"</td>
+            </tr>
+            <tr>
+                <td>He / She</td>
+                <td><strong>Hän</strong></td>
+                <td>Merged, gender-neutral; pronounced "Hahn"</td>
+            </tr>
+            <tr>
+                <td>It</td>
+                <td><strong>Dät</strong></td>
+                <td>Pronounced "Deht"</td>
+            </tr>
+            <tr>
+                <td>We</td>
+                <td><strong>Vö</strong></td>
+                <td>Pronounced "Vee"</td>
+            </tr>
+            <tr>
+                <td>They</td>
+                <td><strong>Då</strong></td>
+                <td>Pronounced "Doh"</td>
+            </tr>
+        </tbody>
+    </table>
 
-    <div class="form-group">
-        <label>Skämål Output</label>
-        <div id="skamalOutput" class="output-box"></div>
-    </div>
-</div>
+    <h3>Possessives (The Possessive Dash Rule)</h3>
+    <p>To make pronouns possessive, attach the appropriate modifier followed by a structural hyphen to connect straight to the object. <em>Note: "min" is not officially recognized.</em></p>
+    <ul>
+        <li><strong>Jän-</strong> = My <span class="note">(Example: Jän-namn = My name)</span></li>
+        <li><strong>Dön-</strong> = Your</li>
+        <li><strong>Häns-</strong> = His / Her</li>
+        <li><strong>Däts-</strong> = Its</li>
+        <li><strong>Vön-</strong> = Our</li>
+        <li><strong>Dån-</strong> = Their</li>
+    </ul>
 
-<script>
-    // --- PROTECTED VOCABULARY DATA ---
-    const FIXED_WORDS = {
-        "who": "hå", "what": "vät", "when": "vëhn", "where": "vär", "why": "vï", "how": "hët",
-        "police": "polis", "officer": "onstapel",
-        "hello": "hejsan", "welcome": "valkomma", "thank you": "väa", "goodbye": "väo",
-        "name": "ämne", // Fixed custom override with ä
-        "is": "ös", "are": "ös", "yes": "vïste", "language": "vïste", 
-        "dialect": "vïste", "text": "vïste", "no": "vïsto",
-        "i": "jäg", "you": "dö", "he": "hän", "she": "hän", "it": "dat", "we": "vö", "they": "då"
-    };
+    <h3>Pronoun-Verb Compounds (Contractions)</h3>
+    <p>Connect the core pronoun directly to the primary link verb <em>ös</em> using a structural hyphen:</p>
+    <ul>
+        <li><strong>Jäg-ös</strong> = I am / I'm</li>
+        <li><strong>Dö-ös</strong> = You are / You're</li>
+        <li><strong>Hän-ös</strong> = He/She is</li>
+        <li><strong>Dät-ös</strong> = It is</li>
+        <li><strong>Vö-ös</strong> = We are</li>
+        <li><strong>Då-ös</strong> = They are</li>
+    </ul>
 
-    const POSSESSIVE_PRONOUNS = {
-        "my": "jän-", "your": "dön-", "his": "häns-", "her": "häns-", "its": "däts-", "our": "vön-", "their": "dån-"
-    };
+    <h2>2. General Vocabulary</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>English Word</th>
+                <th>Skämål Word</th>
+                <th>Category / Usage Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="category-header">
+                <td colspan="3">Greetings &amp; Social Expressions</td>
+            </tr>
+            <tr>
+                <td>Hello</td>
+                <td><strong>Hejsan</strong></td>
+                <td>Standard greeting.</td>
+            </tr>
+            <tr>
+                <td>Welcome</td>
+                <td><strong>Valkomma</strong></td>
+                <td>Core fixed word.</td>
+            </tr>
+            <tr>
+                <td>Thank you</td>
+                <td><strong>Väa</strong></td>
+                <td>Expression of gratitude.</td>
+            </tr>
+            <tr>
+                <td>Goodbye</td>
+                <td><strong>Väo</strong></td>
+                <td>Parting expression.</td>
+            </tr>
+            <tr>
+                <td>Yes</td>
+                <td><strong>Vïste</strong></td>
+                <td>Standard affirmative response.</td>
+            </tr>
+            <tr>
+                <td>No</td>
+                <td><strong>Vïsto</strong></td>
+                <td>Negative response.</td>
+            </tr>
 
-    const CONTRACTIONS = {
-        "i'm": "jäg-ös", "you're": "dö-ös", "he's": "hän-ös", "she's": "hän-ös", "it's": "dät-ös", "we're": "vö-ös", "they're": "då-ös"
-    };
+            <tr class="category-header">
+                <td colspan="3">Linguistic Terms</td>
+            </tr>
+            <tr>
+                <td>Language / Dialect</td>
+                <td><strong>språkå</strong></td>
+                <td>Noun. Added as a distinct specialized term.</td>
+            </tr>
+            <tr>
+                <td>Text</td>
+                <td><strong>båkkt</strong></td>
+                <td>Noun. Added as a distinct specialized term.</td>
+            </tr>
 
-    const NUMBERS = {
-        "1": "än", "2": "dva", "3": "trå", "4": "fjäl", "5": "föm", "6": "sås", "7": "sjå", "8": "ått", "9": "njö", "10": "täl"
-    };
+            <tr class="category-header">
+                <td colspan="3">People &amp; Roles</td>
+            </tr>
+            <tr>
+                <td>Person</td>
+                <td><strong>sjelå</strong></td>
+                <td>Noun.</td>
+            </tr>
+            <tr>
+                <td>Friend</td>
+                <td><strong>sjelårad</strong></td>
+                <td>Noun.</td>
+            </tr>
+            <tr>
+                <td>Police</td>
+                <td><strong>vakt</strong></td>
+                <td>Noun (Institution/Force). Replaces older word "police".</td>
+            </tr>
+            <tr>
+                <td>Officer</td>
+                <td><strong>onstapel</strong></td>
+                <td>Noun (Individual title).</td>
+            </tr>
 
-    const VOWELS = "aeiouyAEIOUY";
+            <tr class="category-header">
+                <td colspan="3">Places &amp; Environment</td>
+            </tr>
+            <tr>
+                <td>City</td>
+                <td><strong>stadä</strong></td>
+                <td>Noun.</td>
+            </tr>
+            <tr>
+                <td>House</td>
+                <td><strong>garda</strong></td>
+                <td>Noun.</td>
+            </tr>
+            <tr>
+                <td>Tree</td>
+                <td><strong>stalmå</strong></td>
+                <td>Noun.</td>
+            </tr>
 
-    function translateWord(word, isFirstWord) {
-        let cleanWord = word.replace(/[.,!?;:]/g, '');
-        let punctuation = word.substring(cleanWord.length);
+            <tr class="category-header">
+                <td colspan="3">Food &amp; Items</td>
+            </tr>
+            <tr>
+                <td>Coffee</td>
+                <td><strong>Kafe</strong></td>
+                <td>Noun.</td>
+            </tr>
+            <tr>
+                <td>Water</td>
+                <td><strong>vatnå</strong></td>
+                <td>Noun.</td>
+            </tr>
 
-        if (cleanWord.length === 0) return word;
+            <tr class="category-header">
+                <td colspan="3">Verbs</td>
+            </tr>
+            <tr>
+                <td>Like / Likes</td>
+                <td><strong>lyskå</strong></td>
+                <td>Verb.</td>
+            </tr>
+            <tr>
+                <td>Am / Are (Modern)</td>
+                <td><strong>är</strong></td>
+                <td>Modern variant.</td>
+            </tr>
+            <tr>
+                <td>Is / Are (Primary Fixed Link)</td>
+                <td><strong>ös</strong></td>
+                <td>Pronounced "Uhss". Primary linking verb.</td>
+            </tr>
 
-        // 1. Proper Noun Rule Verification
-        // If it starts with a Capital but is NOT the very first word, it is a proper noun.
-        const isTitleCase = cleanWord[0] === cleanWord[0].toUpperCase() && cleanWord.substring(1) === cleanWord.substring(1).toLowerCase();
-        const isAllCaps = cleanWord === cleanWord.toUpperCase() && cleanWord.length > 1;
-        
-        if ((isTitleCase || isAllCaps) && !isFirstWord) {
-            return word; // Keep completely unchanged (Proper Noun exemption)
-        }
+            <tr class="category-header">
+                <td colspan="3">Adjectives (Subject to Inversion)</td>
+            </tr>
+            <tr>
+                <td>Hot / Warm / Boiling</td>
+                <td><strong>skolå</strong></td>
+                <td>Adjective.</td>
+            </tr>
+            <tr>
+                <td>Cold / Freezing</td>
+                <td><strong>kjölå</strong></td>
+                <td>Adjective.</td>
+            </tr>
+            <tr>
+                <td>Beautiful</td>
+                <td><strong>skönå</strong></td>
+                <td>Adjective.</td>
+            </tr>
 
-        let lowerWord = cleanWord.toLowerCase();
+            <tr class="category-header">
+                <td colspan="3">Grammar Links &amp; Articles</td>
+            </tr>
+            <tr>
+                <td>A</td>
+                <td><strong>vå</strong></td>
+                <td>Indefinite article.</td>
+            </tr>
+            <tr>
+                <td>The</td>
+                <td><strong>hät</strong></td>
+                <td>Definite article.</td>
+            </tr>
+            <tr>
+                <td>To</td>
+                <td><strong>åt</strong></td>
+                <td>Preposition.</td>
+            </tr>
+        </tbody>
+    </table>
 
-        // 2. Check Protected Lists
-        if (CONTRACTIONS[lowerWord]) return CONTRACTIONS[lowerWord] + punctuation;
-        if (POSSESSIVE_PRONOUNS[lowerWord]) return POSSESSIVE_PRONOUNS[lowerWord] + punctuation;
-        if (FIXED_WORDS[lowerWord]) {
-            let trans = FIXED_WORDS[lowerWord];
-            if (isFirstWord) trans = trans.charAt(0).toUpperCase() + trans.slice(1);
-            return trans + punctuation;
-        }
-        if (NUMBERS[lowerWord]) return NUMBERS[lowerWord] + punctuation;
+    <h2>3. Fixed Question Words</h2>
+    <p>These specialized interrogatives bypass standard mechanical translation steps:</p>
+    <ul>
+        <li><strong>Hå</strong> — Who</li>
+        <li><strong>Vät</strong> — What</li>
+        <li><strong>Vëhn</strong> — When</li>
+        <li><strong>Vär</strong> — Where</li>
+        <li><strong>Vï</strong> — Why</li>
+        <li><strong>Hët</strong> — How</li>
+    </ul>
 
-        // --- SECTION 1: MECHANICAL ENGINE ---
-        const hasSuffix = lowerWord.endsWith('ing') || lowerWord.endsWith('ed') || lowerWord.endsWith('es') || (lowerWord.endsWith('s') && !lowerWord.endsWith('ss'));
+    <h2>4. The Number System (1–10)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>Skämål Word</th>
+                <th>Number</th>
+                <th>Skämål Word</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td><strong>Än</strong></td>
+                <td>6</td>
+                <td><strong>Sås</strong></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><strong>Dva</strong></td>
+                <td>7</td>
+                <td><strong>Sjå</strong></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><strong>Trå</strong></td>
+                <td>8</td>
+                <td><strong>Ått</strong></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><strong>Fjäl</strong></td>
+                <td>9</td>
+                <td><strong>Njö</strong></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td><strong>Föm</strong></td>
+                <td>10</td>
+                <td><strong>Täl</strong></td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Larger Numbers Rule:</strong> Combine base numbers together to form higher counts mathematically:</p>
+    <ul>
+        <li>18 (Eighteen) = <strong>Täl Ått</strong> (Ten Eight)</li>
+        <li>20 (Twenty) = <strong>Dva Täl</strong> (Two Ten)</li>
+    </ul>
 
-        // Strip Suffixes
-        if (lowerWord.endsWith('ing')) lowerWord = lowerWord.slice(0, -3);
-        else if (lowerWord.endsWith('ed')) lowerWord = lowerWord.slice(0, -2);
-        else if (lowerWord.endsWith('es')) lowerWord = lowerWord.slice(0, -2);
-        else if (lowerWord.endsWith('s') && !lowerWord.endsWith('ss')) lowerWord = lowerWord.slice(0, -1);
+    <h2>5. Universal Grammar &amp; Mechanical Rules</h2>
+    <ul>
+        <li>
+            <strong>Noun-Adjective Inversion Rule:</strong> Adjectives and nouns are flipped in order. The noun always comes first, followed by the adjective that modifies it.
+            <br><span class="note">Example: Hot coffee = <strong>Kafe skolå</strong> (instead of skolå Kafe)</span>
+        </li>
+        <li>
+            <strong>Asking Questions:</strong> Place the universal question prefix <strong>Må</strong> at the very beginning of any sentence to instantly turn it into a question.
+            <br><span class="note">Example: "Why do you ask when?" becomes <em>Må vï odå dö aska vëhn?</em></span>
+        </li>
+        <li>
+            <strong>Suffix Rules for Fixed/Protected Words:</strong> When a protected or fixed vocabulary word requires a suffix modifier, its base spelling remains completely intact. Append a lowercase consonant marker directly to the end:
+            <ul>
+                <li>Continuous Action (-ing): Append <strong>v</strong> (e.g., <em>Valkommav</em>)</li>
+                <li>Past Tense (-ed): Append <strong>d</strong> (e.g., <em>Valkommad</em>)</li>
+            </ul>
+        </li>
+    </ul>
 
-        // Compress double letters + switch vowel compress to accents
-        let compressed = "";
-        let i = 0;
-        while (i < lowerWord.length) {
-            if (i < lowerWord.length - 1 && lowerWord[i] === lowerWord[i+1]) {
-                let char = lowerWord[i];
-                if ("aeiou".includes(char)) {
-                    compressed += "ae".includes(char) ? 'ä' : 'ö';
-                } else {
-                    compressed += char;
-                }
-                i += 2;
-            } else {
-                compressed += lowerWord[i];
-                i += 1;
-            }
-        }
-        lowerWord = compressed;
+    <h3>Core Translation Steps (For Unlisted/Regular English Words)</h3>
+    <p>Follow these steps in structural order to translate unlisted English words:</p>
+    <ol>
+        <li><strong>Check for Suffixes:</strong> Look at the original English word to see if it has a suffix (like <em>-ing, -ed, -s, or -es</em>).</li>
+        <li><strong>Apply the Vowel-Starting Prefix:</strong> If the word starts with a vowel, attach a placeholder consonant to the front based on the suffix rule:
+            <ul>
+                <li>Plain Base Words (No suffix): Add a <strong>T</strong> (e.g., <em>are</em> becomes <em>Tare</em>).</li>
+                <li>Suffixed Words (Had -ing, -ed, etc.): Add a <strong>J</strong> (e.g., <em>arriving</em> becomes <em>Jarriving</em>).</li>
+            </ul>
+        </li>
+        <li><strong>Strip Suffixes &amp; Compress (The Umlaut Rule):</strong> Remove trailing suffixes (-ing, -ed, -s). Compress double consonants or double vowels into a single letter. Compressing a double vowel automatically triggers an umlaut (<strong>ä</strong> or <strong>ö</strong>) on that vowel.</li>
+        <li><strong>Shift First Letter:</strong> Move the first letter of the English or placeholder word to the very end.</li>
+        <li><strong>The "W" Drop Rule:</strong> If a regular vocabulary word shifts a <em>w</em> to the very end, that <em>w</em> is completely erased to ensure a clean consonant or vowel finish.</li>
+        <li><strong>The Consonant Lead Rule (No Starting Accents):</strong> Leave the new front of the word completely plain and untouched. Do not force an accent onto the first letter; if an accent lands here, drop it.</li>
+        <li><strong>Slide Accents to Inner Vowels:</strong> Slide your signature Swedish accents backward so they live strictly on the inner vowels of the root word:
+            <ul>
+                <li><strong>å</strong> (Replaces o, ou, oo) — Deep "Oh" sound.</li>
+                <li><strong>ä</strong> (Replaces a, e, ee) — Sharp "Aaa" sound.</li>
+                <li><strong>ö</strong> (Replaces u, i) — Rounded "Uh" sound.</li>
+            </ul>
+        </li>
+        <li><strong>Apply the "No Y" Rule:</strong> Convert any remaining English Ys inside the word into a standard <strong>i</strong> or <strong>e</strong>.</li>
+    </ol>
+    <p class="note">Note: All proper nouns are completely exempt from all shifts, modifiers, and translation changes, maintaining their original English spelling and capitalization.</p>
 
-        if (!lowerWord) return word;
-
-        // Vowel Placeholder Prefix (Forces lowercase add)
-        if (VOWELS.includes(lowerWord[0])) {
-            lowerWord = (hasSuffix ? 'j' : 't') + lowerWord;
-        }
-
-        // Shift First Letter to End as lowercase
-        let firstLetter = lowerWord[0].toLowerCase();
-        let shiftedWord = lowerWord.slice(1) + firstLetter;
-
-        // The "W" Drop Rule
-        if (shiftedWord.endsWith('w')) {
-            shiftedWord = shiftedWord.slice(0, -1);
-        }
-
-        // Slide Accents to Inner Vowels & No Y Rule
-        let chars = shiftedWord.split('');
-        for (let idx = 1; idx < chars.length; idx++) {
-            let c = chars[idx];
-            if (c === 'o') chars[idx] = 'å';
-            else if (c === 'a' || c === 'e') chars[idx] = 'ä';
-            else if (c === 'u' || c === 'i') chars[idx] = 'ö';
-            else if (c === 'y') chars[idx] = 'e';
-        }
-
-        let finalWord = chars.join('');
-        if (isFirstWord) {
-            finalWord = finalWord.charAt(0).toUpperCase() + finalWord.slice(1);
-        }
-
-        return finalWord + punctuation;
-    }
-
-    function translateSentence(sentence) {
-        // Clear out banned apostrophes completely
-        sentence = sentence.replace(/'/g, "");
-        let words = sentence.trim().split(/\s+/);
-        if (words.length === 0 || words[0] === "") return "";
-
-        let translatedWords = [];
-        let isQuestion = sentence.trim().endsWith("?");
-
-        if (isQuestion) {
-            translatedWords.push("Må");
-        }
-
-        for (let i = 0; i < words.length; i++) {
-            let isFirst = (i === 0);
-            translatedWords.push(translateWord(words[i], isFirst));
-        }
-
-        return translatedWords.join(" ");
-    }
-
-    // Interactive Input Event Listener
-    const inputArea = document.getElementById('englishInput');
-    const outputArea = document.getElementById('skamalOutput');
-
-    inputArea.addEventListener('input', (e) => {
-        const text = e.target.value;
-        if(text.trim() === "") {
-            outputArea.innerText = "";
-        } else {
-            outputArea.innerText = translateSentence(text);
-        }
-    });
-</script>
+    <h2>6. Master Translation Examples</h2>
+    <ul>
+        <li>"Hello, my name is Skee." becomes: <strong>Hejsan, Jän-namne ös Skee.</strong></li>
+        <li>"You're welcome." becomes: <strong>Dö-ös Valkomma.</strong></li>
+        <li>"He is a police officer." becomes: <strong>Hän ös at vakt Onstapel.</strong></li>
+    </ul>
 
 </body>
 </html>
